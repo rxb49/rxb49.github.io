@@ -122,33 +122,51 @@
             </p>
             <div class="container">
               <pre>
-            <code>version: '3.8'
-
-              services:
-                wordpress:
-                  image: wordpress:latest
-                  ports:
-                    - "8080:80"
-                  environment:
-                    WORDPRESS_DB_HOST: db
-                    WORDPRESS_DB_USER: wordpress
-                    WORDPRESS_DB_PASSWORD: password
-                    WORDPRESS_DB_NAME: wordpress
-                  volumes:
-                    - ./wp-content:/var/www/html/wp-content
+            <code>services:
+              wordpress:
+                image: wordpress:latest
+                container_name: wordpress
+                volumes:
+                  - ./wordpress:/var/www/html
+                environment:
+                  - WORDPRESS_DB_NAME=wordpress
+                  - WORDPRESS_TABLE_PREFIX=wp_
+                  - WORDPRESS_DB_HOST=db:3306
+                  - WORDPRESS_DB_USER=root
+                  - WORDPRESS_DB_PASSWORD=password
+                depends_on:
+                  - db
+                  - phpmyadmin
+                restart: always
+                ports:
+                  - 8080:80
               
-                db:
-                  image: mysql:5.7
-                  environment:
-                    MYSQL_DATABASE: wordpress
-                    MYSQL_USER: wordpress
-                    MYSQL_PASSWORD: password
-                    MYSQL_RANDOM_ROOT_PASSWORD: '1'
-                  volumes:
-                    - db_data:/var/lib/mysql
+              db:
+                image: mariadb:latest
+                container_name: db
+                volumes:
+                  - ./mariadb_db_data:/var/lib/mysql
+                ports:
+                  - 3306:3306
+                environment:
+                  - MYSQL_ROOT_PASSWORD=password
+                  - MYSQL_USER=root
+                  - MYSQL_PASSWORD=password
+                  - MYSQL_DATABASE=wordpress
+                restart: always
               
-              volumes:
-                db_data:
+              phpmyadmin:
+                depends_on:
+                  - db
+                image: phpmyadmin/phpmyadmin:latest
+                container_name: phpmyadmin
+                restart: always
+                ports:
+                  - 8081:80
+                environment:
+                  PMA_HOST: db
+                  MYSQL_ROOT_PASSWORD: password
+             
               </code>
             </pre>
             </div>
@@ -317,12 +335,19 @@
           <div class="container">
             <pre class="result">
           <code>
-            { "azp": "272196069173.apps.googleusercontent.com",
-            "aud":"272196069173.apps.googleusercontent.com",
-            "sub":"110248495921238986420", "hd": "example.com",
-            "email":"email.example@xxx.com", "email_verified": true, "at_hash":
-            "hash type", "exp": 1524601669, "iss":
-            "https://accounts.google.com", "iat": 1524598069 }
+            {
+              "sub": "towVWvxFjz",
+              "email_verified": true,
+              "name": "Robin Tijou",
+              "locale": {
+                  "country": "FR",
+                  "language": "fr"
+              },
+              "given_name": "Robin",
+              "family_name": "Tijou",
+              "email": "xxxxxxxx@gmail.com",
+              "picture": "https://media.licdn.com/dms/image/D5603AQHOpAeRuCl4SA/profile-displayphoto-shrink_100_100/0/1705050064401?e=1724889600&v=beta&t=7v3IBEFWPDFJXqKXSedBjs1o8UgOjTvNLbCdAQBdufc"
+          }
           </code>
           </pre>
           </div>
