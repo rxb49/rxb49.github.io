@@ -1,3 +1,3 @@
 Voici mon portfolio de première année de BTS SIO
 
-<a href="rxb49.github.io">Visite mon site sur rxb49.github.io</a>
+Visite mon site sur <a href="https://rxb49.github.io/">rxb49.github.io</a>
