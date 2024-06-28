@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projets - Robin Tijou</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <h1>Portfolio de Robin Tijou</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Accueil</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="galarne.html">Galarne</a></li>
+          <li><a href="competences.html">Compétences</a></li>
+          <li>
+            <a href="cybersecurite.html"
+              >Cybersécurité & Veille Technologique</a
+            >
+          </li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main style="padding-left: 80px; padding-right: 80px; padding-bottom: 80px">
+      <h2>Mes projets</h2>
+      <article>
+        <h3>Projet 1 : Création d'un site vitrine avec Wordpress/Stripe</h3>
+        <section>
+          <h4>Description du projet :</h4>
+          <p>
+            J'ai eu comme mission de créer un site sur Wordpress pour Bandyy qui
+            est une entreprise d'évènementiels avec un tunnel de paiement pour
+            accéder aux différents offres disponibles.
+          </p>
+        </section>
+        <section>
+          <h4>Technologies utilisées :</h4>
+          <ul>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg"
+                alt="Wordpress"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              Wordpress
+            </li>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                alt="Docker"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              Docker
+            </li>
+            <li>
+              <img
+                src="fichier/stripe.png"
+                alt="Stripe"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              Stripe
+            </li>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              HTML
+            </li>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+                alt="CSS"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              CSS
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4>Choix de ces technologies :</h4>
+          <p>
+            On a utilisés Wordpress pour permettre au client de pouvoir
+            facilement modifier le site comme il le veux. Car Wordpress est un
+            CMS (Content Management System). C'est un logiciel qui permet de
+            créer et gérer facilement un site web sans avoir a coder (pour les
+            bases)
+            <br /><br />
+            Stripe à été utilisés comme tunnel de paiement car il permet
+            d'importer un tableaux avec les différents tarifs disponible. Tous
+            est configurable sur le site de Stripe et il n'y a pas besoin de
+            connaissances en développement donc le clients peut facilement
+            modifier les prix s'il le souhaite.
+            <br /><br />
+            Le HTML et le CSS à été utilisés pour cetraines sections du site qui
+            demandait des formes ou des fonctionnalités avancées qui n'étaient
+            pas disponible sur Wordpress donc on a du ajouter de l'HTML et du
+            CSS pour pouvoir afficher ce que l'on voulais.
+          </p>
+        </section>
+        <section>
+          <h4>Difficultés rencontrées :</h4>
+          <p>J'ai fait fasse à plusieurs difficultés durant le projet.</p>
+
+          <ul>
+            <li>Docker compose</li>
+            <h4>Création du fichier docker-compose</h4>
+            <p>
+              Pour Installer Wordpress j'ai utiliser docker pour avoir une base
+              de données en plus et pouvoir exporter le site facilement. le
+              fichier docker-compose permet de déployer a la fois Wordpress mais
+              aussi une base de donnée en local.
+            </p>
+            <div class="container">
+              <pre>
+            <code>version: '3.8'
+
+              services:
+                wordpress:
+                  image: wordpress:latest
+                  ports:
+                    - "8080:80"
+                  environment:
+                    WORDPRESS_DB_HOST: db
+                    WORDPRESS_DB_USER: wordpress
+                    WORDPRESS_DB_PASSWORD: password
+                    WORDPRESS_DB_NAME: wordpress
+                  volumes:
+                    - ./wp-content:/var/www/html/wp-content
+              
+                db:
+                  image: mysql:5.7
+                  environment:
+                    MYSQL_DATABASE: wordpress
+                    MYSQL_USER: wordpress
+                    MYSQL_PASSWORD: password
+                    MYSQL_RANDOM_ROOT_PASSWORD: '1'
+                  volumes:
+                    - db_data:/var/lib/mysql
+              
+              volumes:
+                db_data:
+              </code>
+            </pre>
+            </div>
+            <li>
+              Choix de l'éditeur (Gutenberg ou Elementor) / CSS personnalisé?
+            </li>
+            <h4>Maquette du site à reproduire</h4>
+            <embed
+              src="fichier/site-bandyy.pdf"
+              type="application/pdf"
+              width="100%"
+              height="600px"
+            />
+            <br /><br /><br />
+            <li>Ajout de Stripe</li>
+            <h4>Tarif avec Stripe</h4>
+            <br />
+            <ol>
+              <li>
+                Cliquez sur "Ajouter un produit" puis sur "Ajouter un tarif".
+                Remplissez les détails du tarif : nom, prix, devise, fréquence
+                de facturation (par exemple, mensuelle ou annuelle).
+              </li>
+              <br /><br />
+              <div style="text-align: center">
+                <img src="fichier/ajout-produit.png" style="width: 400px" />
+              </div>
+              <br />
+              <li>
+                Une fois le tarif créé, il faut créer un tableau de prix avec
+                les différents produits créer.
+              </li>
+              <br /><br />
+              <div style="text-align: center">
+                <img src="fichier/tableau-prix.png" style="width: 400px" />
+              </div>
+              <br />
+              <li>
+                Pour utiliser ce tableau il faut intégrer le script générer par
+                Stripe dans la page wordpress.
+              </li>
+              <br /><br />
+              <div style="text-align: center">
+                <img src="fichier/script.png" style="width: 1000px" />
+              </div>
+              <br /><br />
+              <div style="text-align: center">
+                <img
+                  src="fichier/tarif.png"
+                  alt="Stripe"
+                  style="width: 500px"
+                />
+              </div>
+              <br />
+            </ol>
+            <button
+              onclick="window.open('https://stripe.com/fr?utm_campaign=FR_fr_Search_Brand_Stripe_EXA-922532853&utm_medium=cpc&utm_source=google&ad_content=680712971255&utm_term=stripe&utm_matchtype=e&utm_adposition=&utm_device=c&gad_source=1&gclid=CjwKCAjwm_SzBhAsEiwAXE2Cv-4HBWaWdttsigQZAq5JX3dfpwI2bM0g301RPtbK1QopXzmFL02QyhoCZVYQAvD_BwE', '_blank')"
+            >
+              Lien vers Stripe
+            </button>
+            <br /><br /><br />
+            <li>Déplacement du site sur le serveur de test</li>
+          </ul>
+          <img />
+        </section>
+        <section>
+          <h4>Résultats :</h4>
+          <p>
+            Ce projet m'a pris 3 semaines a causes des différents erreurs et
+            problématiques que j'ai rencontré.
+          </p>
+          <div style="text-align: center">
+            <button onclick="window.open('erreur.html', '_blank')">
+              Voir le site de Bandyy
+            </button>
+          </div>
+        </section>
+      </article>
+    </main>
+    <main style="padding-left: 80px; padding-right: 80px; padding-bottom: 80px">
+      <article>
+        <h3>Projet 2 : Ajout de connexion externe</h3>
+        <section>
+          <h4>Description du projet :</h4>
+          <p>
+            A la suite de la création du site sur Wordpress j'ai suis passé à la
+            partie connexion en créant un composant de connexion externe comme
+            Google, Microsoft et Linkedin
+          </p>
+          <div style="text-align: center">
+            <img
+              src="fichier/connexion.png"
+              style="width: 50%; max-width: 300px"
+            />
+          </div>
+        </section>
+        <section>
+          <h4>Technologies utilisées :</h4>
+          <ul>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                alt="React"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              React
+            </li>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+                alt="TypeScript"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              TypeScript
+            </li>
+            <li>
+              <img
+                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+                alt="HTML"
+                style="width: 2em; height: 2em; vertical-align: middle"
+              />
+              HTML
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h4>Choix de ces technologies :</h4>
+          <p>
+            On a utilisés React pour effectuer ce projet car il permet d'avoir
+            des composants réutilisable. il permet aussi une grande
+            compatibilité pour divers types d'application web, mobiles ou
+            bureaux
+            <br /><br />
+            On a utilisé TypeScript pour le développement car il permet de typer
+            des variables et donc permet de corriger les erreurs de type
+          </p>
+        </section>
+        <section>
+          <h4>Difficultés rencontrées :</h4>
+          <p></p>
+          <ul>
+            <li>Découverte de React</li>
+            <li>Fonctionnement des call API pour OAuth2</li>
+            <section>
+              <h4>
+                Fonctionnement d'échange de token pour la connexion OAuth2 :
+              </h4>
+              <main>
+                <div style="text-align: center">
+                  <img src="fichier/schema-OAuth2.png" style="width: 70%" />
+                </div>
+              </main>
+            </section>
+            <br /><br />
+            <li>Travail avec un backend</li>
+          </ul>
+        </section>
+        <section>
+          <h4>Résultats :</h4>
+          <p>
+            Ce projet à duré jusqu'a la fin de mon stage. Il reste à implementer
+            la connexion dans le backend et de créer un utilisateur si il ne
+            c'est jamais connecter
+          </p>
+          <h3>Info récuperer par google</h3>
+          <div class="container">
+            <pre class="result">
+          <code>
+            { "azp": "272196069173.apps.googleusercontent.com",
+            "aud":"272196069173.apps.googleusercontent.com",
+            "sub":"110248495921238986420", "hd": "example.com",
+            "email":"email.example@xxx.com", "email_verified": true, "at_hash":
+            "hash type", "exp": 1524601669, "iss":
+            "https://accounts.google.com", "iat": 1524598069 }
+          </code>
+          </pre>
+          </div>
+          <img />
+          <h3>Lien vers le github</h3>
+          <button
+            onclick="window.open('https://github.com/Galarne/UserService.Front/tree/adding-external-auth', '_blank')"
+          >
+            Authentification externe
+            <i class="fab fa-github" style="margin-left: 0.5em"></i>
+          </button>
+        </section>
+      </article>
+    </main>
+    <footer>
+      <p>&copy; 2024 Robin Tijou. Tous droits réservés.</p>
+      <a
+        href="https://www.linkedin.com/in//robin-tijou-457a6a2a9/"
+        target="_blank"
+        ><i class="fab fa-linkedin"></i
+      ></a>
+      <a href="https://github.com/rxb49" target="_blank"
+        ><i class="fab fa-github"></i
+      ></a>
+      |
+      <a href="contact.html">Contact</a>
+    </footer>
+  </body>
+</html>
