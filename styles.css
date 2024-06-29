@@ -218,6 +218,11 @@ main ul li {
   align-items: center;
 }
 
+.container-form {
+  justify-content: center;
+  align-items: center;
+}
+
 .result {
   width: 400px;
 }
